@@ -1,6 +1,8 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
 import { Searchbar } from "react-native-paper";
+import styled from "styled-components/native";
+
+const Search = styled(Searchbar)``;
 
 export const SearchBar = () => {
   const [searchQuery, setSearchQuery] = React.useState("");
@@ -8,18 +10,10 @@ export const SearchBar = () => {
   const onChangeSearch = (query) => setSearchQuery(query);
 
   return (
-    <View style={styles.container}>
-      <Searchbar
-        placeholder="Find Restaurant"
-        onChangeText={onChangeSearch}
-        value={searchQuery}
-      />
-    </View>
+    <Search
+      placeholder="Find Restaurant"
+      onChangeText={onChangeSearch}
+      value={searchQuery}
+    />
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    // width: "100%",
-  },
-});
