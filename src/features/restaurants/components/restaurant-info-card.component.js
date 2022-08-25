@@ -27,7 +27,7 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
       "https://cache.desktopnexus.com/thumbseg/2603/2603436-bigthumbnail.jpg",
     ],
     address = "200, Lagos Street.",
-    isOpenNow = true,
+    isOpenNow,
     rating = 4,
     isClosedTemporarily = true,
   } = restaurant;
@@ -41,8 +41,8 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
         <Text variant="label">{name}</Text>
         <RatingsAndOpen>
           <Ratings>
-            {ratings.map(() => (
-              <SvgXml xml={star} height={20} width={20} />
+            {ratings.map((_, i) => (
+              <SvgXml xml={star} height={20} width={20} key={i} />
             ))}
           </Ratings>
           <EndSection>
@@ -50,7 +50,7 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
               <Text variant="error">Closed Temporarily</Text>
             )}
             {isClosedTemporarily && <Spacer />}
-            {isOpenNow && <SvgXml xml={open} height={25} width={25} />}
+            {isOpenNow && <SvgXml xml={open} height={20} width={20} />}
             {isOpenNow && <Spacer />}
             <Icon source={{ uri: icon }} />
           </EndSection>

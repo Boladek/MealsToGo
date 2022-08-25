@@ -8,6 +8,7 @@ export const Info = styled(View)`
 
 export const Container = styled(Card)`
   padding: ${(props) => props.theme.space[3]};
+  margin-bottom: ${(props) => props.theme.space[3]};
 `;
 
 export const CardCover = styled(Card.Cover)``;
@@ -30,8 +31,8 @@ export const Ratings = styled(View)`
 `;
 
 export const Icon = styled(Image)`
-  height: 25px;
-  width: 25px;
+  height: 20px;
+  width: 20px;
 `;
 
 export const Spacer = styled(View)`
