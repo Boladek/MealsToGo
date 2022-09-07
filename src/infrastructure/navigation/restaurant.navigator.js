@@ -11,10 +11,15 @@ const RestaurantStack = createStackNavigator();
 function RestaurantNavigator() {
   return (
     <RestaurantStack.Navigator
-      headerMode="none"
-      screenOptions={{ ...TransitionPresets.ModalPresentationIOS }}
+      screenOptions={{
+        ...TransitionPresets.ModalPresentationIOS,
+        headerShown: false,
+      }}
     >
-      <RestaurantStack.Screen name="Restaurants" component={RestaurantScreen} />
+      <RestaurantStack.Screen
+        name="Restaurants-Page"
+        component={RestaurantScreen}
+      />
       <RestaurantStack.Screen
         name="Restaurants-Detail"
         component={RestaurantDetailScreen}

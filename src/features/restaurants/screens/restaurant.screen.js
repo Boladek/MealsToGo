@@ -21,28 +21,32 @@ const RestaurantContainer = styled(FlatList).attrs({
 const RestaurantScreen = ({ navigation }) => {
   const { restaurants, isLoading } = useContext(RestaurantsContext);
 
-  if (isLoading) {
-    return <ActivityIndicator animating={isLoading} color={"#002465"} />;
-  }
-
   return (
     <SafeArea>
-      <SearchContainer>
-        <SearchBar />
-      </SearchContainer>
-      <RestaurantContainer
-        data={restaurants}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate("Restaurants-Detail", { restaurant: item })
-            }
-          >
-            <RestaurantInfoCard restaurant={item} />
-          </TouchableOpacity>
-        )}
-        keyExtractor={(item) => item.name}
-      />
+      {isLoading ? (
+        <ActivityIndicator animating={isLoading} color={"#002465"} />
+      ) : (
+        <>
+          <SearchContainer>
+            <SearchBar />
+          </SearchContainer>
+          <RestaurantContainer
+            data={restaurants}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("Restaurants-Detail", {
+                    restaurant: item,
+                  })
+                }
+              >
+                <RestaurantInfoCard restaurant={item} />
+              </TouchableOpacity>
+            )}
+            keyExtractor={(item) => item.name}
+          />
+        </>
+      )}
     </SafeArea>
   );
 };

@@ -7,8 +7,10 @@ export const LocationContext = createContext();
 export const LocationContextProvider = ({ children }) => {
   const [keyWord, setKeyWord] = useState("San Francisco");
   const [location, setLocation] = useState(null);
+  const [viewport, setViewport] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [main, setMain] = useState(null);
 
   const onSearch = (searchKeyword) => {
     if (!searchKeyword.length) {
@@ -24,7 +26,9 @@ export const LocationContextProvider = ({ children }) => {
         .then(locationTransform)
         .then((res) => {
           setIsLoading(false);
-          setLocation(res);
+          setLocation(`${res.lat},${res.lng}`);
+          setViewport(res.viewport);
+          setMain({ lat: res.lat, lng: res.lng });
         })
         .catch((err) => {
           setError(err);
@@ -41,6 +45,8 @@ export const LocationContextProvider = ({ children }) => {
         search: onSearch,
         location,
         keyWord,
+        viewport,
+        main
       }}
     >
       {children}

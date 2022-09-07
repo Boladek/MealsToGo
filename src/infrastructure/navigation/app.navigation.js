@@ -5,6 +5,7 @@ import { Text, View } from "react-native";
 import { SafeArea } from "../../components/safearea/safe-area.components";
 import { Ionicons } from "@expo/vector-icons";
 import RestaurantNavigator from "./restaurant.navigator";
+import { MapScreen } from "../../features/map/screens/map.screen";
 
 import {
   useFonts as useOswald,
@@ -41,7 +42,6 @@ export default function AppNavigator() {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        headerMode="none"
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
@@ -59,11 +59,12 @@ export default function AppNavigator() {
           },
           tabBarActiveTintColor: "black",
           tabBarInactiveTintColor: "gray",
+          headerShown: false,
         })}
       >
         <Tab.Screen name="Restaurants" component={RestaurantNavigator} />
         <Tab.Screen name="Settings" component={SettingsScreen} />
-        <Tab.Screen name="Maps" component={MapsScreen} />
+        <Tab.Screen name="Maps" component={MapScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
@@ -79,12 +80,12 @@ const SettingsScreen = () => {
   );
 };
 
-const MapsScreen = () => {
-  return (
-    <SafeArea>
-      <View>
-        <Text>Maps!</Text>
-      </View>
-    </SafeArea>
-  );
-};
+// const MapsScreen = () => {
+//   return (
+//     <SafeArea>
+//       <View>
+//         <Text>Maps!</Text>
+//       </View>
+//     </SafeArea>
+//   );
+// };

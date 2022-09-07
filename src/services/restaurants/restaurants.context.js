@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 import { restaurantService, restaurantsTransform } from "./restaurants.service";
 import { LocationContext } from "../location/location.context";
-import { locations } from "../location/location.mock";
+// import { locations } from "../location/location.mock";
 
 export const RestaurantsContext = createContext();
 
