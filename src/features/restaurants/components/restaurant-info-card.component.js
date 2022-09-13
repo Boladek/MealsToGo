@@ -1,13 +1,12 @@
 import React from "react";
-import { Card } from "react-native-paper";
-import { View, Image } from "react-native";
-import styled from "styled-components/native";
 import { SvgXml } from "react-native-svg";
+import { AntDesign } from "@expo/vector-icons";
 
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
 
 import { Text } from "../../../components/typography/text.component";
+import { Favourites } from "../../../components/favourites/favourites.component";
 import {
   Spacer,
   Icon,
@@ -37,6 +36,7 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
   return (
     <Container elevation={5}>
       <CardCover source={{ uri: photos[0] }} />
+      <Favourites restaurant={restaurant} />
       <Info>
         <Text variant="label">{name}</Text>
         <RatingsAndOpen>

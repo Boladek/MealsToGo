@@ -5,7 +5,7 @@ import { LocationContext } from "../../services/location/location.context";
 
 const Search = styled(Searchbar)``;
 
-export const SearchBar = () => {
+export const SearchBar = ({ isFavouritesToggled, onPressToggleFavourites }) => {
   const { keyWord, search } = useContext(LocationContext);
   const [searchQuery, setSearchQuery] = React.useState(keyWord);
 
@@ -18,6 +18,8 @@ export const SearchBar = () => {
   return (
     <Search
       placeholder="Search for a location"
+      icon={isFavouritesToggled ? "heart" : "heart-outline"}
+      onIconPress={onPressToggleFavourites}
       onChangeText={onChangeSearch}
       value={searchQuery}
       onSubmitEditing={() => {

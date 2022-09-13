@@ -46,7 +46,7 @@ export const LocationContextProvider = ({ children }) => {
         location,
         keyWord,
         viewport,
-        main
+        main,
       }}
     >
       {children}

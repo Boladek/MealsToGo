@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { Image, View } from "react-native";
+import { Image, View, TouchableOpacity } from "react-native";
 import { Card } from "react-native-paper";
 
 export const Info = styled(View)`
@@ -37,4 +37,12 @@ export const Icon = styled(Image)`
 
 export const Spacer = styled(View)`
   margin-left: ${(props) => props.theme.space[2]};
+`;
+
+export const FavouritesButton = styled(TouchableOpacity)`
+  background-color: black;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 9;
 `;

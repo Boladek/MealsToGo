@@ -1,15 +1,16 @@
 import React, { useContext, useState, useEffect } from "react";
-import MapView, { Marker } from "react-native-maps";
-import { StyleSheet, View, Dimensions } from "react-native";
-import styled from "styled-components/native";
+import MapView, { Marker, Callout } from "react-native-maps";
+import { StyleSheet, View, Text, Dimensions } from "react-native";
+// import styled from "styled-components/native";
 
 import { SafeArea } from "../../../components/safearea/safe-area.components";
 import { SearchBar } from "../components/search.component";
+import { MapCallout } from "../components/map-callout.component";
 
 import { LocationContext } from "../../../services/location/location.context";
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
 
-export const MapScreen = () => {
+export const MapScreen = ({ navigation }) => {
   const { viewport, main } = useContext(LocationContext);
   const { restaurants } = useContext(RestaurantsContext);
 
@@ -20,10 +21,6 @@ export const MapScreen = () => {
     const southLat = viewport.southwest.lat;
     setLatDelta(northLat - southLat);
   }, [viewport]);
-
-  useEffect(() => {
-    console.log(restaurants.map((restaurant) => restaurant.geometry.location));
-  }, [restaurants]);
 
   return (
     <SafeArea style={styles.container}>
@@ -39,17 +36,27 @@ export const MapScreen = () => {
           longitudeDelta: 0.02,
         }}
       >
-        {restaurants.map((restaurant, index) => {
+        {restaurants.map((restaurant) => {
           return (
             <Marker
-              key={index}
+              key={restaurant.name}
               coordinate={{
                 latitude: restaurant.geometry.location.lat,
                 longitude: restaurant.geometry.location.lng,
               }}
               title={restaurant.name}
               description={restaurant.address}
-            />
+            >
+              <Callout
+                onPress={() =>
+                  navigation.navigate("Restaurants-Detail", {
+                    restaurant,
+                  })
+                }
+              >
+                <MapCallout restaurant={restaurant} />
+              </Callout>
+            </Marker>
           );
         })}
       </MapView>
